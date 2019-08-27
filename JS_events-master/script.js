@@ -1,5 +1,4 @@
-// Fonctionnalité 1
-
+// Fonction 1
 var footer = document.getElementsByTagName('footer')[0];
 var count = 0;
 
@@ -9,8 +8,9 @@ var clickFooter = function() {
 };
 footer.addEventListener("click", clickFooter);
 
-// Fonctionnalité 2
 
+
+// Fonction 2
 var toggler = document.getElementsByClassName('navbar-toggler')[0];
 
 var clickToggler = function() {
@@ -23,18 +23,19 @@ var clickToggler = function() {
 }
 toggler.addEventListener("click", clickToggler);
 
-// Fonctionnalité 3
 
+
+// Fonction 3
 var editbtn = document.getElementsByClassName('btn-outline-secondary')[0];
 
 var clickEdit = function() {
   document.getElementsByClassName('card-text')[0].style.color = 'red';
 }
-
 editbtn.addEventListener("click", clickEdit);
 
-// Fonctionnalité 4
 
+
+// Fonction 4
 var editGreen = document.getElementsByClassName('btn-outline-secondary')[1];
 var greenClick = false
 
@@ -48,28 +49,35 @@ var clickEditGreen = function() {
     greenClick = true;
   }
 }
-
 editGreen.addEventListener("click", clickEditGreen);
 
-// Fonctionnalité 5
 
-var navbar = document.getElementsByClassName("navbar");
-var cdn = document.querySelector("link")
 
-var noBootstrap = function () {
-  cdn.href === "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" ? 
-      cdn .href = " " : 
-      cdn.href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" ;
-};
+// Fonction 5
+var navbar = document.getElementsByTagName('header')[0];
+var isBootstrap = true;
 
-navbar[0].addEventListener("dblclick", noBootstrap);
+var destroyBootstrap = function() {
+  if (isBootstrap) {
+    document.getElementsByTagName('link')[0].remove()
+    isBootstrap = false;
+  } else {
+    let head = document.getElementsByTagName('head')[0];
+    let bootstrap = document.createElement('link');
+    bootstrap.rel = "stylesheet";
+    bootstrap.href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+    head.appendChild(bootstrap);
+    isBootstrap = true;
+  }
+}
+navbar.addEventListener("dblclick", destroyBootstrap);
+
+
 
 // Fonctionnalité 6
-
 var viewButtons = document.getElementsByClassName('btn btn-sm btn-success');
 var cardImages = document.getElementsByClassName('card-img-top');
 var cardTexts = document.getElementsByClassName('card-text');
-
 var isReduced = Array(viewButtons.length).fill(false);
 
 var reduceCard = function(i) {
